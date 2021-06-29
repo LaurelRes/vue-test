@@ -1,11 +1,13 @@
 <template>
   <div>
-    <fieldset align="center">
-      {{ param.id }}
-      {{ param.email }}
-      {{ param.first_name }}
-      {{ param.last_name }}
+    <fieldset>
+      <h1>{{ param.id }} |
+      {{ param.email }} |
+        {{ param.first_name }}
+        {{ param.last_name }} |
+        <router-link :to="'/users/' + param.id">Personal Card</router-link></h1>
       <img v-bind:src="param.avatar"/>
+
     </fieldset>
   </div>
 
@@ -15,13 +17,9 @@
 
 export default {
   name: "User",
-  mounted() {
-
-  },
+  mounted() {},
   data() {
-    return {
-      foo: null
-    }
+    return {}
   },
   props: {
     param: Object
@@ -30,5 +28,11 @@ export default {
 </script>
 
 <style scoped>
-
+fieldset{
+  align-content: center;
+  width: 700px;
+}
+h1{
+  font-size: 14px;
+}
 </style>

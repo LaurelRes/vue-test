@@ -1,31 +1,32 @@
 <template>
-  <div>
-    <User v-for="item in foo" :param="item" :key="item.id">
-
+  <div align="center">
+    <User v-for="item in users" :param="item" :key="item.id">
     </User>
   </div>
 </template>
 <script>
-import users from '../../fake.json'
+//import users from '../../fake.json'
 import User from "./User";
+import axios from 'axios';
 export default {
   components: {User},
   name : "Users",
-  mounted() {
-    this.foo = users
-    console.log(this.foo)
-  },
-  data(){
-    return  {
-      foo:null
-    }
+  data: () => ({
+    users: []
+  }),
+  created()
+  {
+    axios.get('https://reqres.in/api/users?page=2')
+    .then(response => {
+      this.users = response.data.data
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   }
-
 }
 
-
 </script>
-
 <style scoped>
 
 </style>
