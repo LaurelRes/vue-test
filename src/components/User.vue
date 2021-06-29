@@ -7,20 +7,13 @@
         {{ param.last_name }} |
         <router-link :to="'/users/' + param.id">Personal Card</router-link></h1>
       <img v-bind:src="param.avatar"/>
-
     </fieldset>
   </div>
-
 </template>
 
 <script>
-
 export default {
   name: "User",
-  mounted() {},
-  data() {
-    return {}
-  },
   props: {
     param: Object
   }

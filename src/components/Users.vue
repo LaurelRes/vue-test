@@ -5,27 +5,28 @@
   </div>
 </template>
 <script>
-//import users from '../../fake.json'
 import User from "./User";
 import axios from 'axios';
+import {ref} from "@vue/composition-api";
+
 export default {
   components: {User},
-  name : "Users",
-  data: () => ({
-    users: []
-  }),
-  created()
-  {
-    axios.get('https://reqres.in/api/users?page=2')
-    .then(response => {
-      this.users = response.data.data
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+  name: "Users",
+  setup() {
+    const users = ref([]);
+    let getUser = () => {
+      axios.get('https://reqres.in/api/users?page=2')
+          .then(response => {
+            users.value = response.data.data
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+    }
+    getUser();
+    return {users}
   }
 }
-
 </script>
 <style scoped>
 

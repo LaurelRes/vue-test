@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
+
       <router-link to="/users">Users</router-link>
       <h1>List of users</h1>
     </div>
@@ -13,12 +12,6 @@
 <script>
 export default {
   name: 'app',
-
-  data() {
-    return {
-
-    }
-  }
 }
 </script>
 
