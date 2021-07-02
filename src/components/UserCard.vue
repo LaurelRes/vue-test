@@ -1,37 +1,47 @@
 <template>
   <div align="center">
     <ol v-if="user">
-      <li><h2>Person №{{ user.data.id }}</h2></li>
-      <li><h3>email: {{ user.data.email }}</h3></li>
-      <li><h3>First name: {{ user.data.first_name }}</h3></li>
-      <li><h3>Last name: {{ user.data.last_name }}</h3></li>
-      <li><img v-bind:src="user.data.avatar"/></li>
+      <li><h2>Person №{{ userID }}</h2></li>
+      <li><h3>email: {{ user.var.email }}</h3></li>
+      <li><h3>First name: {{ user.var.first_name }}</h3></li>
+      <li><h3>Last name: {{ user.var.last_name }}</h3></li>
+      <li><img v-bind:src="user.var.avatar"/></li>
     </ol>
     <router-link to="/Users">Go back</router-link>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import axios from 'axios';
-import {computed, defineComponent, ref} from "@vue/composition-api";
+import {computed, defineComponent, reactive, Ref} from "@vue/composition-api";
+
+class Card {
+  id?: number;
+  email?: string;
+  first_name?: string;
+  last_name?: string;
+  avatar?: string
+}
 
 export default defineComponent({
   name: "UserCard",
   setup(props, ctx) {
-    const user = ref(null);
-    console.log(ctx.root.$route.params.id)
-    const ID = computed(() => ctx.root.$route.params.id);
+    const user  = reactive({var: new Card()})
+    const userID: Ref<string> = computed(() => ctx.root.$route.params.id);
+
+
     let loadUser = () => {
-      axios.get('https://reqres.in/api/users/' + ID.value)
+      axios.get('https://reqres.in/api/users/' + userID.value)
           .then(response => {
-            user.value = response.data
+            console.log(response)
+            user.var = response.data.data
           })
           .catch((error) => {
             console.log(error)
           })
     }
     loadUser();
-    return {user, ID}
+    return {user, userID}
   }
 })
 </script>

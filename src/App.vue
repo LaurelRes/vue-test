@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <div id="nav">
-
       <router-link to="/users">Users</router-link>
       <h1>List of users</h1>
     </div>

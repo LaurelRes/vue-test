@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Users from '../components/Users.vue'
+// @ts-ignore
 import UserCard from "../components/UserCard";
 
 Vue.use(VueRouter)
