@@ -3,7 +3,10 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Users from '../components/Users.vue'
 // @ts-ignore
-import UserCard from "../components/UserCard";
+import UserCard from "../components/UserCard"
+// @ts-ignore
+import Products from "../components/Products";
+import ProductCard from "@/components/ProductCard.vue";
 
 Vue.use(VueRouter)
 
@@ -32,6 +35,16 @@ const routes = [
     path: '/users/:id',
     name: 'UserCard',
     component: UserCard
+  },
+  {
+    path: '/products',
+    name: 'Products',
+    component: Products
+  },
+  {
+    path: '/products/:id',
+    name: 'ProductCard',
+    component: ProductCard
   }
 ]
 const router = new VueRouter({

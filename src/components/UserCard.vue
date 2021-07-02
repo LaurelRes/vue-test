@@ -7,8 +7,10 @@
       <li><h3>Last name: {{ user.var.last_name }}</h3></li>
       <li><img v-bind:src="user.var.avatar"/></li>
     </ol>
-    <router-link to="/Users">Go back</router-link>
+    <router-link to="/Users">Go back</router-link> |
+    <router-link :to="'/Products/'">Products' list</router-link>
   </div>
+
 </template>
 
 <script lang="ts">
@@ -25,15 +27,13 @@ class Card {
 
 export default defineComponent({
   name: "UserCard",
+
   setup(props, ctx) {
     const user  = reactive({var: new Card()})
     const userID: Ref<string> = computed(() => ctx.root.$route.params.id);
-
-
     let loadUser = () => {
       axios.get('https://reqres.in/api/users/' + userID.value)
           .then(response => {
-            console.log(response)
             user.var = response.data.data
           })
           .catch((error) => {
@@ -41,6 +41,7 @@ export default defineComponent({
           })
     }
     loadUser();
+    console.log(userID.value)
     return {user, userID}
   }
 })
