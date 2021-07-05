@@ -1,6 +1,6 @@
 <template>
   <div>
-
+    <router-link :to="'/products/add'">Add New Item</router-link>
     <div v-for="item in prodList.var" :param="item" :key="item.id">
       <fieldset>
       {{item.id}} |
@@ -38,9 +38,7 @@ export default defineComponent({
 })
 </script>
 <style scoped>
-div {
 
-}
 img {
   width: 95px;
   height:  100px;

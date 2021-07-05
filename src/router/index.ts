@@ -7,7 +7,7 @@ import UserCard from "../components/UserCard"
 // @ts-ignore
 import Products from "../components/Products";
 import ProductCard from "@/components/ProductCard.vue";
-
+import AddProduct from "@/components/AddProduct.vue";
 Vue.use(VueRouter)
 
 
@@ -40,6 +40,11 @@ const routes = [
     path: '/products',
     name: 'Products',
     component: Products
+  },
+  {
+    path: '/products/add',
+    name: 'AddProduct',
+    component: AddProduct
   },
   {
     path: '/products/:id',
